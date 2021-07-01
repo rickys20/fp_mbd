@@ -1,14 +1,16 @@
 <?php
 
-$server = "localhost";
-$user = "root";
-$password = "";
-$nama_database = "final_project_mbd";
+$host = "localhost";
+$user = "postgres";
+$pass = "Koki12001";
+$db = "fp_mbd";
 
-$db = mysqli_connect($server, $user, $password, $nama_database);
+$con = pg_connect("host=$host dbname=$db user=$user password=$pass") or die("Could not connect to Server\n");
 
-if( !$db ){
-    die("Gagal terhubung dengan database: " . mysqli_connect_error());
+if( !$con ){
+    echo "Error : Unable to open database\n";
+}else{
+    echo "Berhasil\n";
 }
 
 ?>

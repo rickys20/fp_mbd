@@ -40,16 +40,18 @@
         <div class="card">
           <div class="card-header bg-transparent mb-0"><h5 class="text-center">TAQARRA SHOP</h5></div>
           <div class="card-body">
-              <form action="form-daftar.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              
+              <form action="form-order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
                 <input type="submit" name="order" value="ORDER" class="btn btn-primary btn-block">
               </div>
+              </form>
               
-              <form action="form-daftar.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="form-product.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
                 <input type="submit" name="product" value="PRODUCT" class="btn btn-primary btn-block">
               </div>
-            </form>
+              </form>
           </div>
         </div>
       </div>

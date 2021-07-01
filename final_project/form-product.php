@@ -1,4 +1,18 @@
-<?php include ('config.php'); ?>
+<?php include ('config.php'); 
+$dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='fp_mbd'");
+$query = "SELECT * FROM categories";
+$result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
+
+// output result
+ while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
+ echo "Id: " . $line['category_id'] . "    Judul: " . $line['category_name'] . "<br/>";
+ }
+
+ // free result
+ pg_free_result($result);
+
+ // close connection
+ pg_close($dbcon);?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +30,8 @@
     <div class="container">
       <h1 class="display-4" align="center">TAQARRA SHOP</h1>
       <p class="lead" align="center">Selamat Datang di Taqarra Shop, Silahkan Order untuk Memesan Product dan Melihat Product pada Menu Product</p>
+      
     </div>
   </div>
 </body>
+
