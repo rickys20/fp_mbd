@@ -1,19 +1,3 @@
-<?php include ('config.php'); 
-$dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='fp_mbd'");
-$query = "SELECT * FROM categories";
-$result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
-
-// output result
- while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {
- echo "Id: " . $line['category_id'] . "    Judul: " . $line['category_name'] . "<br/>";
- }
-
- // free result
- pg_free_result($result);
-
- // close connection
- pg_close($dbcon);?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +15,17 @@ $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
       <h1 class="display-4" align="center">TAQARRA SHOP</h1>
       <p class="lead" align="center">Selamat Datang di Taqarra Shop, Silahkan Order untuk Memesan Product dan Melihat Product pada Menu Product</p>
       
+      <div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-4">
+        <form action="index.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+            <div class="form-group">
+            <input type="submit" name="back menu" value="BACK" class="btn btn-primary btn-block">
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
     </div>
   </div>
 </body>

@@ -24,24 +24,18 @@
     <div class="row justify-content-center mt-5">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header bg-transparent mb-0"><h5 class="text-center">TAQARRA SHOP</h5></div>
+          <div class="card-header bg-transparent mb-0"><h5 class="text-center">MENU</h5></div>
           <div class="card-body">
               
-              <form action="form-order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="categories.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
-                <input type="submit" name="order" value="ORDER" class="btn btn-primary btn-block">
-              </div>
-              </form>
-              
-              <form action="form-product.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
-              <div class="form-group">
-                <input type="submit" name="product" value="PRODUCT" class="btn btn-primary btn-block">
+                <input type="submit" name="categories" value="CATEGORIES" class="btn btn-primary btn-block">
               </div>
               </form>
 
-              <form action="form-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="index.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
-                <input type="submit" name="view" value="VIEW" class="btn btn-primary btn-block">
+                <input type="submit" name="back menu" value="BACK" class="btn btn-primary btn-block">
               </div>
               </form>
           </div>
