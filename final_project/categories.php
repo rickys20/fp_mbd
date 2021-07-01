@@ -1,4 +1,4 @@
-<?php include ('config.php'); ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +20,7 @@
       <p>
         <table style="width:100%">
             <?php 
-            $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='fp_mbd'");
+            $dbcon = pg_connect("host='localhost' user='postgres' password='1kingtiger' dbname='FPMBD''");
             $query = "SELECT * FROM categories";
             $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
 
