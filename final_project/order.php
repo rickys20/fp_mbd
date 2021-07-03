@@ -13,23 +13,32 @@
   <!--lalu saya menggunakan jumbotron untuk memberi desain untuk judul laman-->
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4" align="center">CATEGORIES</h1>
-      <p class="lead" align="center">Menampilkan Data Catagories</p>
+      <h1 class="display-4" align="center">ORDERS</h1>
+      <p class="lead" align="center">Menampilkan Data ORDERS</p>
       <p>
         <table style="width:100%">
             <?php 
             $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='coba'");
-            $query = "SELECT * FROM categories";
+            $query = "SELECT * FROM orders";
             $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
 
             // output result
-            echo '<table id="categories" class="table" width="100%" cellspacing="0">
+            echo '<table id="Order" class="table" width="30%" cellspacing="0">
             <tr>
-              <td>ID</td>
-              <td>CATEGORY NAME</td>
-              <td>DESCRIPTION</td>
-              <td>PICTURE</td>
-              <td>FITUR</td>
+              <td>ORDER_ID</td>
+              <td>CUSTOMER_ID</td>
+              <td>EMPLOYEE_ID</td>
+              <td>ORDER_DATE</td>
+              <td>REQUIRED DATE</td>
+              <td>SHIPPED DATE</td>
+              <td>SHIP VIA</td>
+              <td>FRIEGHT</td>
+              <td>SHIP NAME</td>
+              <td>SHIP ADDRESS</td>
+              <td>SHIP CITY</td>
+              <td>SHIP REGION</td>
+              <td>SHIP POSTAL CODE</td>
+              <td>SHIP COUNTRY</td>
             </tr>';
             while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {  
                 echo("<tr>");

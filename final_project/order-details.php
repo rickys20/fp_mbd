@@ -19,17 +19,17 @@
         <table style="width:100%">
             <?php 
             $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='coba'");
-            $query = "SELECT * FROM categories";
+            $query = "SELECT * FROM order_details";
             $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
 
             // output result
-            echo '<table id="categories" class="table" width="100%" cellspacing="0">
+            echo '<table id="Order Details" class="table" width="100%" cellspacing="0">
             <tr>
-              <td>ID</td>
-              <td>CATEGORY NAME</td>
-              <td>DESCRIPTION</td>
-              <td>PICTURE</td>
-              <td>FITUR</td>
+              <td>ORDER_ID</td>
+              <td>PRODUCT_ID</td>
+              <td>UNIT_PRICE</td>
+              <td>QUANTITY</td>
+              <td>DISCOUNT</td>
             </tr>';
             while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {  
                 echo("<tr>");

@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <!--ini merupakan bagian head dari laman login, terdapat link link yg di copy dari bootstrap-->
@@ -7,15 +5,15 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	<title>Taqarra Shop</title>
+	<title>NORTHWIND Shop</title>
 </head>
 <!--dan lalu ini bagian body atau tubuh laman login saya-->
 <body>
   <!--lalu saya menggunakan jumbotron untuk memberi desain untuk judul laman-->
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-      <h1 class="display-4" align="center">TAQARRA SHOP</h1>
-      <p class="lead" align="center">Selamat Datang di Taqarra Shop, Silahkan Order untuk Memesan Product dan Melihat Product pada Menu Product</p>
+      <h1 class="display-4" align="center">NORTHWIND SHOP</h1>
+      <p class="lead" align="center">Selamat Datang di NORTHWIND Shop, Silahkan Order untuk Memesan Product dan Melihat Product pada Menu Product</p>
     </div>
   </div>
   
@@ -24,7 +22,7 @@
     <div class="row justify-content-center mt-5">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header bg-transparent mb-0"><h5 class="text-center">TAQARRA SHOP</h5></div>
+          <div class="card-header bg-transparent mb-0"><h5 class="text-center">NORTHWIND SHOP</h5></div>
           <div class="card-body">
               
               <form action="form-order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->

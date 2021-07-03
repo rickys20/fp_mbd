@@ -3,7 +3,7 @@
 $host = "localhost";
 $user = "postgres";
 $pass = "Koki12001";
-$db = "fp_mbd";
+$db = "coba";
 
 $con = pg_connect("host=$host dbname=$db user=$user password=$pass") or die("Could not connect to Server\n");
 
