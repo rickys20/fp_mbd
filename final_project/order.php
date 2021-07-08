@@ -78,6 +78,19 @@
       <p>
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for order id.." title="Type in a name">
         <table style="width:100%">
+
+        <div class="container">
+          <div class="row justify-content-center mt-0">
+            <div class="col-md-2">
+              <form action="delete-data.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+                  <div class="form-group">
+                  <input type="submit" name="delete" value="DELETE DATA" class="btn btn-primary btn-block">
+                  </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
             <?php 
             $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='coba'");
             $query = "SELECT * FROM orders";
