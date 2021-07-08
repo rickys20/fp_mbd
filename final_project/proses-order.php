@@ -1,5 +1,6 @@
 <?php
     $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='coba'");
+	pg_query("BEGIN") or die("Could not start transaction\n");
 
 	//ambil data formulir
 	$order_id = $_POST['order_id'];
@@ -19,13 +20,16 @@
 	
 	
 	//query
-    $query = "INSERT INTO orders VALUES ('$ship_country', '$cust_id', '$emp_id', '$order_date','$req_date',
-    '$shipped_date','$ship_via','$frieght','$ship_name','$ship_address','$ship_city','$ship_region','$postal_code','$ship_country')";
-	
-	if($query){
-		header('Location: index.php?status=sukses');
-	}else{
-		//header('Location: index.php?status=gagal');
-		echo mysqli_error($db_connection);
-	}	
+    $query = "INSERT INTO orders VALUES ('$order_id', '$cust_id', '$emp_id', '$order_date','$req_date','$shipped_date','$ship_via','$frieght','$ship_name','$ship_address','$ship_city','$ship_region','$postal_code','$ship_country')";
+	$result = pg_query($query); 	
+
+	if ($query) {
+		header('Location: order.php?status=sukses');
+		pg_query("COMMIT") or die("Gagal\n");
+	} else {
+		echo "Gagal\n";
+		pg_query("ROLLBACK") or die("Query gagal\n");;
+	}
+
+	pg_close($dbcon);	
 ?>
