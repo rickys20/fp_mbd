@@ -46,6 +46,10 @@ if( pg_num_rows($query) < 1 ){
             <input type="text" name="c_name" placeholder="category name" value="<?php echo $pg['category_name'] ?>" />
         </p>
         <p>
+            <label for="desc">Description: </label>
+            <input type="text" name="desc" placeholder="Description" value="<?php echo $pg['description'] ?>" />
+        </p>
+        <p>
             <input type="submit" value="Simpan" name="simpan" />
         </p>
 

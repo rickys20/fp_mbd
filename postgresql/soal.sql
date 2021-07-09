@@ -87,11 +87,11 @@ CREATE OR REPLACE FUNCTION check_product()
     DECLARE units_in_stock integer;
 BEGIN
     SELECT p.discontinued INTO discontinued
-    FROM order_details AS od JOIN product AS p ON od.product_id = p.product_id
+    FROM order_details AS od JOIN products AS p ON od.product_id = p.product_id
     WHERE od.order_id = NEW.order_id;
  
     SELECT p.units_in_stock INTO units_in_stock
-    FROM order_details AS od JOIN product AS p ON od.product_id = p.product_id
+    FROM order_details AS od JOIN products AS p ON od.product_id = p.product_id
     WHERE od.order_id = NEW.order_id;
  
     IF discontinued = 1 OR units_in_stock <= 0 THEN

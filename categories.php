@@ -65,7 +65,7 @@
         <div class="container">
           <div class="row justify-content-left mt-5">
             <div class="col-md-2">
-              <form action="menu-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="index.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
                   <div class="form-group">
                   <input type="submit" name="back menu" value="BACK" class="btn btn-primary btn-block">
                   </div>
@@ -75,7 +75,18 @@
         </div>
         <div class="container">
           <h1 class="display-4" align="center">CATEGORIES</h1>
-      </div>
+        </div>
+          <div class="container">
+              <div class="row justify-content-center mt-5">
+                <div class="col-md-2">
+                  <form action="new-category.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+                      <div class="form-group">
+                      <input type="submit" name="new" value="NEW" class="btn btn-primary btn-block">
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
         <div class="container">
           <div class="row justify-content-left mt-0">
             <div class="col-md-11">

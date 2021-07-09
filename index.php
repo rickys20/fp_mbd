@@ -16,30 +16,45 @@
       <p class="lead" align="center">Selamat Datang di NORTHWIND Shop, Silahkan Order untuk Memesan Product dan Melihat Product pada Menu Product</p>
     </div>
   </div>
+
+  
+  <div class="card-header bg-transparent mb-0"><h5 class="text-center">Jumlah Data Categories</h5></div>
+      <div class="card-body">
+         
+        <?php
+          $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='final'");
+          $query = "SELECT COUNT(*) as j_data FROM categories";
+          $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
+                
+          $pg = pg_fetch_array($result);
+          echo "<p align='center'>".$pg['j_data']."</p>";
+        ?>
+      </div>
+  </div>    
   
     <!--lalu mulai dari bawah ini saya membuat form yang berfungsi sebagai tempat untuk mengisi username dan password-->
 	<div class="container">
     <div class="row justify-content-center mt-5">
       <div class="col-md-4">
         <div class="card">
-          <div class="card-header bg-transparent mb-0"><h5 class="text-center">NORTHWIND SHOP</h5></div>
+          <div class="card-header bg-transparent mb-0"><h5 class="text-center">MENU</h5></div>
           <div class="card-body">
               
-              <form action="form-order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="categories.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
-                <input type="submit" name="order" value="ORDER" class="btn btn-primary btn-block">
-              </div>
-              </form>
-              
-              <form action="form-product.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
-              <div class="form-group">
-                <input type="submit" name="product" value="PRODUCT" class="btn btn-primary btn-block">
+                <input type="submit" name="categories" value="CATEGORIES" class="btn btn-primary btn-block">
               </div>
               </form>
 
-              <form action="menu-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="order-details.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
-                <input type="submit" name="view" value="VIEW" class="btn btn-primary btn-block">
+                <input type="submit" name="order-details" value="DETAILS ORDER" class="btn btn-primary btn-block">
+              </div>
+              </form>
+
+              <form action="order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <div class="form-group">
+                <input type="submit" name="order" value="ORDER" class="btn btn-primary btn-block">
               </div>
               </form>
           </div>

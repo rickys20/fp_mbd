@@ -8,9 +8,10 @@ if(isset($_POST['simpan'])){
     // ambil data dari formulir
     $cid= $_POST['c_id'];
     $name= $_POST['c_name'];
+    $desc= $_POST['desc'];
 
     // buat query update
-    $pgsql = "UPDATE categories SET category_name='$name' WHERE category_id=$cid";
+    $pgsql = "UPDATE categories SET category_name='$name', description='$desc' WHERE category_id=$cid";
     $query = pg_query($dbcon, $pgsql);
 
     // apakah query update berhasil?
