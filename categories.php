@@ -5,9 +5,8 @@
   <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-	  <title>NORTHWIND Shop</title>
+	<title>NORTHWIND Shop</title>
     <link rel="stylesheet" href="https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
     * {
       box-sizing: border-box;
@@ -41,7 +40,7 @@
       border-collapse: collapse;
       width: 100%;
       border: 1px solid #ddd;
-      font-size: 18px;
+      font-size: 11px;
     }
 
     #myTable th, #myTable td {
@@ -59,14 +58,14 @@
     </style>
 </head>
 
+
 <body>
-  <!--lalu saya menggunakan jumbotron untuk memberi desain untuk judul laman-->
-  <div class="jumbotron jumbotron-fluid">
+<div class="jumbotron jumbotron-fluid">
     <div class="container">
         <div class="container">
-          <div class="row justify-content-left mt-0">
+          <div class="row justify-content-left mt-5">
             <div class="col-md-2">
-              <form action="form-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="menu-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
                   <div class="form-group">
                   <input type="submit" name="back menu" value="BACK" class="btn btn-primary btn-block">
                   </div>
@@ -74,49 +73,55 @@
             </div>
           </div>
         </div>
-      <h1 class="display-4" align="center">ORDER DETAILS</h1>
-      <p class="lead" align="center">Menampilkan Data Order Details</p>
-      <p>
-        <!-- <h2> Jenis Kategori </h2>
-        <input type="text" id="myInputC" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-        <h2> Cari Data </h2> -->
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-        <table style="width:100%">
-            <?php 
-            $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='coba'");
-            $query = "SELECT od.order_id, p.product_name, od.unit_price, od.quantity, od.discount FROM order_details od, products p WHERE p.product_id = od.product_id";
-            $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
-            
-            
-            // output result
-            echo '<table id="myTable" class="table" width="100%" cellspacing="0">
-            <tr class="header">
-            <th style="width:20%;">ORDER ID</th>
-            <th style="width:60%;">PRODUCT ID</th>
-            <th style="width:20%;">UNIT PRICE</th>
-            <th style="width:20%;">QUANTITY</th>
-            <th style="width:20%;">DISCOUNT</th>
-            </tr>';
-            while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {  
-                echo("<tr>");
-                foreach ($line as $col_value => $row_value) {
-                    echo("<td>$row_value</td>");
-                }
-                echo("</tr>\n");
-            }
-            echo("</table>");
+        <div class="container">
+          <h1 class="display-4" align="center">CATEGORIES</h1>
+      </div>
+        <div class="container">
+          <div class="row justify-content-left mt-0">
+            <div class="col-md-11">
 
-            // free result
-            pg_free_result($result);
+              <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for order id.." title="Type in a name">
+              <table style="width:100%">
 
-            // close connection
-            pg_close($dbcon);?>
-        </table>
-       </p>    
+              <?php
+                $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='final'");
+                $query = "SELECT * FROM categories ORDER BY category_id";
+                $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
+
+
+                echo '<table id="myTable" class="table" width="15%" cellspacing="0">
+                <tr class="header">
+                <th style="width:10%;">ID</th>
+                <th style="width:20%;">CATEGORY NAME</th>
+                <th style="width:60%;">DESCRIPTION</th>
+                <th style="width:20%;">PICTURE</th>
+                <th style="width:20%;">FITUR</th>
+                </tr>';
+
+                  while($pg = pg_fetch_array($result)){
+                      echo "<tr>";
+
+                      echo "<td>".$pg['category_id']."</td>";
+                      echo "<td>".$pg['category_name']."</td>";
+                      echo "<td>".$pg['description']."</td>";
+                      echo "<td>".$pg['picture']."</td>";
+
+                      echo "<td>";
+                      echo "<a href='form-edit-categories.php?id=".$pg['category_id']."'>Edit</a> | ";
+                      echo "<a href='hapus-categories.php?id=".$pg['category_id']."'>Hapus</a>";
+                      echo "</td>";
+
+                      echo "</tr>";
+                  }
+                  ?>
+            </div>
+          </div>
+        </div>
     </div>
-  </div>
+</div>
+</body>
 
-  <script>
+<script>
   function myFunction() {
     var input, filter, table, tr, td, i, txtValue;
     // input1 = document.getElementById("myInputC");
@@ -138,6 +143,5 @@
       }
     }
   </script>
-</body>
 
 </html>

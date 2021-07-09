@@ -37,7 +37,7 @@
               </div>
               </form>
 
-              <form action="form-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <form action="menu-view.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
                 <input type="submit" name="view" value="VIEW" class="btn btn-primary btn-block">
               </div>
