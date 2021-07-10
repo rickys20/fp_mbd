@@ -33,10 +33,7 @@
                     <label>REQUIRED DATE: </label>
                      <input type="text" name="req_date" class="form-control" placeholder="YYYY-MM-DD" required="required">
                    </div>
-                   <div class="form-group">
-                    <label>SHIPPED DATE: </label>
-                     <input type="text" name="shipped_date" class="form-control" placeholder="YYYY-MM-DD" required="required">
-                   </div>
+                   
                    <div class="form-group">
                     <label>SHIP VIA: </label>
                      <input type="text" name="ship_via" class="form-control" placeholder="ship via number" required="required">

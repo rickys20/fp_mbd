@@ -129,7 +129,8 @@
 
                       echo "<td>";
                       echo "<a href='form-edit-order.php?id=".$pg['order_id']."'>Edit</a> | ";
-                      echo "<a href='hapus-order.php?id=".$pg['order_id']."'>Hapus</a>";
+                      echo "<a href='hapus-order.php?id=".$pg['order_id']."'>Hapus</a> |";
+                      echo "<a href='total-harga.php?id=".$pg['order_id']."'>Total Harga</a>";
                       echo "</td>";
 
                       echo "</tr>";

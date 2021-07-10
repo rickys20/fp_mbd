@@ -87,6 +87,12 @@
                 <input type="submit" name="new-order" value="NEW ORDER PRODUCT" class="btn btn-primary btn-block">
               </div>
               </form>
+
+              <form action="product.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <div class="form-group">
+                <input type="submit" name="product" value="PRODUCTS" class="btn btn-primary btn-block">
+              </div>
+              </form>
               
               <form action="categories.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
