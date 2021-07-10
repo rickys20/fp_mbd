@@ -67,3 +67,15 @@ CREATE TRIGGER new_order_details
 BEFORE INSERT ON order_details
 FOR EACH ROW EXECUTE FUNCTION new_order_details();
 ```
+
+## no 2
+```sql
+CREATE INDEX orders_order_id_idx ON orders (order_id);
+CREATE INDEX products_reorder_level_idx ON products (reorder_level);
+CREATE INDEX products_units_idx ON products (units_in_stock, units_on_order);
+CREATE INDEX customers_customer_id_idx ON customers (customer_id);
+CREATE INDEX employees_employee_id_idx ON employees (employee_id);
+CREATE INDEX suppliers_supplier_id_idx ON suppliers (supplier_id);
+CREATE INDEX products_product_id_idx ON products (product_id);
+CREATE INDEX order_details_order_id_product_id_idx ON order_details (order_id, product_id);
+```
