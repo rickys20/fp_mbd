@@ -2,22 +2,22 @@
 
 ## no 1
 ### Active database
-#### function
-function yang kita buat adalah untuk mendapatkan total harga suatu pemesanan 
-
-#### Procedure
-1. mengganti shipped_date suatu order menjadi tanggal tertentu
+#### FUNCTION
+1. Jika order_id null isikan dengan latest order_id
 ```sql
-CREATE OR REPLACE PROCEDURE set_shipped_date(p_order_id integer, p_shipped_date date)
-AS $set_shipped_date$
+CREATE OR REPLACE FUNCTION new_order_details()
+    RETURNS TRIGGER
+    AS $new_order_details$
+	DECLARE last_order_id integer;
 BEGIN
-    UPDATE orders
-    SET shipped_date = p_shipped_date
-    WHERE order_id = p_order_id;
+	SELECT MAX(order_id) INTO last_order_id FROM orders;
+	
+    IF NEW.order_id IS NULL THEN
+	NEW.order_id := last_order_id;
+    END IF;
+	RETURN NEW;
 END;
-$set_shipped_date$ LANGUAGE plpgsql;
-
-CALL set_shipped_date (11078, '20-01-2001'); 
+$new_order_details$ LANGUAGE plpgsql;
 ```
 
 2. mendapatkan total harga suatu pemesanan (melalui order_id)
@@ -42,8 +42,28 @@ $total_harga$ LANGUAGE plpgsql;
 SELECT * FROM total_harga(11077);
 ```
 
+#### Procedure
+1. mengganti shipped_date suatu order menjadi tanggal tertentu
+```sql
+CREATE OR REPLACE PROCEDURE set_shipped_date(p_order_id integer, p_shipped_date date)
+AS $set_shipped_date$
+BEGIN
+    UPDATE orders
+    SET shipped_date = p_shipped_date
+    WHERE order_id = p_order_id;
+END;
+$set_shipped_date$ LANGUAGE plpgsql;
+
+CALL set_shipped_date (11078, '20-01-2001'); 
+```
+
 ### sequence
 menambah data kategori id secara otomatis
 
-### trigger
-berhubungan dengan sequence yang telah kita buat tetapi kategori id akan terbuat setelah tiap pemasukan data
+### TRIGGER
+1. order_details baru
+```sql
+CREATE TRIGGER new_order_details
+BEFORE INSERT ON order_details
+FOR EACH ROW EXECUTE FUNCTION new_order_details();
+```
