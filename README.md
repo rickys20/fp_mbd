@@ -47,13 +47,23 @@ SELECT * FROM total_harga(11077);
 CREATE OR REPLACE FUNCTION update_product_units()
     RETURNS TRIGGER
     AS $update_product_units$
+    DECLARE units_in_order integer;
 BEGIN
     UPDATE products
-    SET units_in_stock = units_in_stock - 1, units_on_order = units_on_order + 1
+    SET units_in_stock = units_in_stock - 1
+    AND units_in_order = units_in_order + 1
     WHERE product_id = NEW.product_id; 
- RETURN NEW;
+
+    SELECT p.units_in_stock INTO units_in_stock
+    FROM order_details AS od JOIN products AS p ON od.product_id = p.product_id
+    WHERE od.order_id = NEW.order_id;
+
+    IF units_in_order = 0 THEN
+    CALL reorder_level_product(NEW.order_id);
+
+    RETURN NEW;
 END;
-$update_product_units$ LANGUAGE plpgsql
+$update_product_units$ LANGUAGE plpgsql;
 ```
 
 #### Procedure
@@ -86,6 +96,23 @@ BEGIN
     AND reorder_level > 0;
 END;
 $reorder_product$ LANGUAGE plpgsql;
+```
+
+3. update reorder level
+```sql
+CREATE OR REPLACE PROCEDURE reorder_level_product(p_product_id integer)
+    AS $reorder_level_product$
+    DECLARE max_reorder_level integer;
+BEGIN
+    SELECT MAX(reorder_level) FROM products
+    INTO max_reorder_level
+    GROUP BY product_id;
+
+    UPDATE products
+    SET reorder_level = max_reorder_level + 1
+    WHERE product_id = p_product_id;
+END;
+$reorder_level_product$ LANGUAGE plpgsql;
 ```
 
 ### sequence
