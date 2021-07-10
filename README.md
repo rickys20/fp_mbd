@@ -16,7 +16,8 @@ BEGIN
 END;
 $set_shipped_date$ LANGUAGE plpgsql;
 
-CALL set_shipped_date (11078, '20-01-2001');```
+CALL set_shipped_date (11078, '20-01-2001'); 
+```
 
 ### sequence
 menambah data kategori id secara otomatis
