@@ -71,6 +71,23 @@ $set_shipped_date$ LANGUAGE plpgsql;
 CALL set_shipped_date (11078, '20-01-2001'); 
 ```
 
+2. reorder produk
+```sql
+CREATE OR REPLACE PROCEDURE reorder_product(p_product_id integer, p_qty integer)
+    AS $reorder_product$
+BEGIN
+    UPDATE products
+    SET units_in_stock = units_in_stock + p_qty, reorder_level = 0
+    WHERE product_id = p_product_id;
+ 
+    UPDATE products
+    SET reorder_level = reorder_level - 1
+    WHERE product_id = p_product_id 
+    AND reorder_level > 0;
+END;
+$reorder_product$ LANGUAGE plpgsql;
+```
+
 ### sequence
 menambah data kategori id secara otomatis
 
