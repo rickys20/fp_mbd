@@ -42,6 +42,20 @@ $total_harga$ LANGUAGE plpgsql;
 SELECT * FROM total_harga(11077);
 ```
 
+3. update unit di produk
+```sql
+CREATE OR REPLACE FUNCTION update_product_units()
+    RETURNS TRIGGER
+    AS $update_product_units$
+BEGIN
+    UPDATE products
+    SET units_in_stock = units_in_stock - 1, units_on_order = units_on_order + 1
+    WHERE product_id = NEW.product_id; 
+ RETURN NEW;
+END;
+$update_product_units$ LANGUAGE plpgsql
+```
+
 #### Procedure
 1. mengganti shipped_date suatu order menjadi tanggal tertentu
 ```sql
@@ -66,6 +80,13 @@ menambah data kategori id secara otomatis
 CREATE TRIGGER new_order_details
 BEFORE INSERT ON order_details
 FOR EACH ROW EXECUTE FUNCTION new_order_details();
+```
+
+2. update unit
+```sql
+CREATE TRIGGER update_product_units
+AFTER INSERT ON order_details
+FOR EACH ROW EXECUTE FUNCTION update_product_units();
 ```
 
 ## no 2
