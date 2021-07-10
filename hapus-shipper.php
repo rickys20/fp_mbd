@@ -9,13 +9,13 @@ if( isset($_GET['id']) ){
 
     // buat query hapus
     pg_query("BEGIN") or die("Failed\n");
-    $pgsql = "DELETE FROM categories WHERE category_id=$c_id";
+    $pgsql = "DELETE FROM shippers WHERE shipper_id=$c_id";
     $query = pg_query($dbcon, $pgsql);
 
     // apakah query hapus berhasil?
     if( $query ){
         pg_query("COMMIT") or die("Gagal\n");
-        header('Location: categories.php');
+        header('Location: shippers.php');
     } else {
         die("gagal menghapus...");
         pg_query("ROLLBACK") or die("Query gagal\n");

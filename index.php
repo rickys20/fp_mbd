@@ -30,7 +30,49 @@
           echo "<p align='center'>".$pg['j_data']."</p>";
         ?>
       </div>
-  </div>    
+  </div> 
+
+  <div class="card-header bg-transparent mb-0"><h5 class="text-center">Jumlah Data Us - States</h5></div>
+      <div class="card-body">
+         
+        <?php
+          $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='final'");
+          $query = "SELECT COUNT(*) as us_data FROM us_states";
+          $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
+                
+          $pg = pg_fetch_array($result);
+          echo "<p align='center'>".$pg['us_data']."</p>";
+        ?>
+      </div>
+  </div> 
+
+  <div class="card-header bg-transparent mb-0"><h5 class="text-center">Jumlah Data Shippers</h5></div>
+      <div class="card-body">
+         
+        <?php
+          $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='final'");
+          $query = "SELECT COUNT(*) as shipper_data FROM shippers";
+          $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
+                
+          $pg = pg_fetch_array($result);
+          echo "<p align='center'>".$pg['shipper_data']."</p>";
+        ?>
+      </div>
+  </div> 
+  
+  <div class="card-header bg-transparent mb-0"><h5 class="text-center">Jumlah Data Order</h5></div>
+      <div class="card-body">
+         
+        <?php
+          $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='final'");
+          $query = "SELECT COUNT(*) as order_data FROM orders";
+          $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
+                
+          $pg = pg_fetch_array($result);
+          echo "<p align='center'>".$pg['order_data']."</p>";
+        ?>
+      </div>
+  </div>        
   
     <!--lalu mulai dari bawah ini saya membuat form yang berfungsi sebagai tempat untuk mengisi username dan password-->
 	<div class="container">
@@ -39,6 +81,12 @@
         <div class="card">
           <div class="card-header bg-transparent mb-0"><h5 class="text-center">MENU</h5></div>
           <div class="card-body">
+
+              <form action="new-order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <div class="form-group">
+                <input type="submit" name="new-order" value="NEW ORDER PRODUCT" class="btn btn-primary btn-block">
+              </div>
+              </form>
               
               <form action="categories.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
@@ -46,15 +94,21 @@
               </div>
               </form>
 
-              <form action="order-details.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
-              <div class="form-group">
-                <input type="submit" name="order-details" value="DETAILS ORDER" class="btn btn-primary btn-block">
-              </div>
-              </form>
-
               <form action="order.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
               <div class="form-group">
                 <input type="submit" name="order" value="ORDER" class="btn btn-primary btn-block">
+              </div>
+              </form>
+
+              <form action="us-states.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <div class="form-group">
+                <input type="submit" name="us-states" value="US STATES" class="btn btn-primary btn-block">
+              </div>
+              </form>
+
+              <form action="shippers.php"><!--lalu, fungsi di sebelah ini akan membawa kita ke laman register-->
+              <div class="form-group">
+                <input type="submit" name="shippers" value="SHIPPERS" class="btn btn-primary btn-block">
               </div>
               </form>
           </div>

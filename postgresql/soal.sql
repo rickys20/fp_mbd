@@ -176,3 +176,53 @@ CREATE INDEX employees_employee_id_idx ON employees (employee_id);
 CREATE INDEX suppliers_supplier_id_idx ON suppliers (supplier_id);
 CREATE INDEX products_product_id_idx ON products (product_id);
 CREATE INDEX order_details_order_id_product_id_idx ON order_details (order_id, product_id);
+
+
+
+
+-- Ricky ---
+-- Sequence categories
+CREATE SEQUENCE new_categories
+ AS integer
+ INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 999999;
+
+CREATE OR REPLACE FUNCTION add_new_categories()    
+   RETURNS TRIGGER
+   AS $add_new_categories$
+BEGIN
+   IF NEW.category_id IS NULL
+   THEN PERFORM setval('new_categories', (SELECT MAX(category_id) FROM categories));
+   NEW.category_id := NEXTVAL('new_categories');      
+   END IF; 
+   RETURN NEW;
+END;
+$add_new_categories$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_new_categories BEFORE INSERT ON categories    
+   FOR EACH ROW EXECUTE PROCEDURE add_new_categories();
+
+select * from categories order by category_id
+
+--- Sequence new_us_states
+CREATE SEQUENCE new_us_states
+ AS integer
+ INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 999999;
+
+CREATE OR REPLACE FUNCTION add_new_us_states()    
+   RETURNS TRIGGER
+   AS $add_new_us_states$
+BEGIN
+   IF NEW.state_id IS NULL
+   THEN PERFORM setval('new_us_states', (SELECT MAX(state_id) FROM us_states));
+   NEW.state_id := NEXTVAL('new_us_states');      
+   END IF; 
+   RETURN NEW;
+END;
+$add_new_us_states$ LANGUAGE plpgsql;
+
+CREATE TRIGGER add_new_us_states BEFORE INSERT ON us_states    
+   FOR EACH ROW EXECUTE PROCEDURE add_new_us_states();

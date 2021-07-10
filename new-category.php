@@ -26,7 +26,7 @@
             <input type="text" name="pict" placeholder="Picture" />
         </p>
         <p>
-            <input type="submit" value="Tambah" name="Tambah" />
+            <input type="submit" value="Tambah" name="Simpan" />
         </p>
 
         </fieldset>
