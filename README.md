@@ -66,6 +66,36 @@ END;
 $update_product_units$ LANGUAGE plpgsql;
 ```
 
+4. auto id kategori baru
+```sql
+CREATE OR REPLACE FUNCTION add_new_categories()    
+   RETURNS TRIGGER
+   AS $add_new_categories$
+BEGIN
+   IF NEW.category_id IS NULL
+   THEN PERFORM setval('new_categories', (SELECT MAX(category_id) FROM categories));
+   NEW.category_id := NEXTVAL('new_categories');      
+   END IF; 
+   RETURN NEW;
+END;
+$add_new_categories$ LANGUAGE plpgsql;
+```
+
+5. auto id us_state baru
+```sql
+CREATE OR REPLACE FUNCTION add_new_us_states()    
+   RETURNS TRIGGER
+   AS $add_new_us_states$
+BEGIN
+   IF NEW.state_id IS NULL
+   THEN PERFORM setval('new_us_states', (SELECT MAX(state_id) FROM us_states));
+   NEW.state_id := NEXTVAL('new_us_states');      
+   END IF; 
+   RETURN NEW;
+END;
+$add_new_us_states$ LANGUAGE plpgsql;
+```
+
 #### Procedure
 1. mengganti shipped_date suatu order menjadi tanggal tertentu
 ```sql
@@ -116,7 +146,23 @@ $reorder_level_product$ LANGUAGE plpgsql;
 ```
 
 ### sequence
-menambah data kategori id secara otomatis
+1. auto id kategori baru
+```sql
+CREATE SEQUENCE new_categories
+ AS integer
+ INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 999999;
+```
+
+2. auto id us state
+```sql
+CREATE SEQUENCE new_us_states
+ AS integer
+ INCREMENT BY 1
+ MINVALUE 1
+ MAXVALUE 999999;
+```
 
 ### TRIGGER
 1. order_details baru
@@ -131,6 +177,18 @@ FOR EACH ROW EXECUTE FUNCTION new_order_details();
 CREATE TRIGGER update_product_units
 AFTER INSERT ON order_details
 FOR EACH ROW EXECUTE FUNCTION update_product_units();
+```
+
+3. auto id kategori baru
+```sql
+CREATE TRIGGER add_new_categories BEFORE INSERT ON categories    
+   FOR EACH ROW EXECUTE PROCEDURE add_new_categories();
+```
+
+4. auto id US state baru
+```sql
+CREATE TRIGGER add_new_us_states BEFORE INSERT ON us_states    
+   FOR EACH ROW EXECUTE PROCEDURE add_new_us_states();
 ```
 
 ## no 2
