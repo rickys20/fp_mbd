@@ -63,12 +63,11 @@ FOR EACH ROW EXECUTE FUNCTION discount_od();
 CREATE OR REPLACE FUNCTION update_product_units()
     RETURNS TRIGGER
     AS $update_product_units$
-    DECLARE
 BEGIN
     UPDATE products
-    SET units_in_stock = units_in_stock - 1
-    AND units_in_order = units_in_order + 1
+    SET units_in_stock = units_in_stock - 1, units_on_order = units_on_order + 1
     WHERE product_id = NEW.product_id; 
+	RETURN NEW;
 END;
 $update_product_units$ LANGUAGE plpgsql;
 
@@ -180,7 +179,6 @@ CREATE INDEX order_details_order_id_product_id_idx ON order_details (order_id, p
 
 
 
--- Ricky ---
 -- Sequence categories
 CREATE SEQUENCE new_categories
  AS integer

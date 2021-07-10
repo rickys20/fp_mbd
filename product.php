@@ -68,44 +68,49 @@
         <table style="width:100%">
             <?php 
             $dbcon = pg_connect("host='localhost' user='postgres' password='Koki12001' dbname='final'");
-            $query = "SELECT * FROM Products";
+            $query = "SELECT * FROM Products ORDER BY product_id";
             $result = pg_query($dbcon, $query) or die('Query failed: ' . pg_last_error());
 
             // output result
-            echo '<table id="Products" class="table" width="100%" cellspacing="0">
-            <tr>
-              <td>ID</td>
-              <td>Product </td>
-              <td>Supplier ID</td>
-              <td>Category ID</td>
-              <td>Quantity per unit</td>
-              <td>unit price</td>
-              <td>unit in stock</td>
-              <td>reoder level</td>
-              <td>discontinued</td>
-              
-              
-            </tr>';
-            while ($line = pg_fetch_array($result, null, PGSQL_ASSOC)) {  
-                echo("<tr>");
-                foreach ($line as $col_value => $row_value) {
-                    echo("<td>$row_value</td>");
-                }
-                echo("</tr>\n");
-            }
-            echo("</table>");
+            echo '<table id="myTable" class="table" width="15%" cellspacing="0">
+                <tr class="header">
+                <th style="width:10%;">ID</th>
+                <th style="width:20%;">PRODUCT</th>
+                <th style="width:60%;">SUPPLIER</th>
+                <th style="width:20%;">CATEGORY ID</th>
+                <th style="width:20%;">QUANTITY PER UNIT</th>
+                <th style="width:10%;">UNIT PIECE</th>
+                <th style="width:20%;">UNIT IN STOCK</th>
+                <th style="width:60%;">UNIT IN ORDER</th>
+                <th style="width:20%;">REORDER LEVEL</th>
+                <th style="width:20%;">DISCONTINUED</th>
+                <th style="width:20%;">FITUR</th>
+                </tr>';
 
-            // free result
-            pg_free_result($result);
+                  while($pg = pg_fetch_array($result)){
+                      echo "<tr>";
 
-            // close connection
-            pg_close($dbcon);?>
+                      echo "<td>".$pg['product_id']."</td>";
+                      echo "<td>".$pg['product_name']."</td>";
+                      echo "<td>".$pg['supplier_id']."</td>";
+                      echo "<td>".$pg['category_id']."</td>";
+                      echo "<td>".$pg['quantity_per_unit']."</td>";
+                      echo "<td>".$pg['unit_price']."</td>";
+                      echo "<td>".$pg['units_in_stock']."</td>";
+                      echo "<td>".$pg['units_on_order']."</td>";
+                      echo "<td>".$pg['reorder_level']."</td>";
+                      echo "<td>".$pg['discontinued']."</td>";
+
+                      echo "<td>";
+                      echo "<a href='reorder.php?id=".$pg['product_id']."'>Reorder</a> ";
+                      echo "</td>";
+
+                      echo "</tr>";
+                  }?>
         
        </p>    
     </div>
   </div>
-
-  
 
 
   <script>

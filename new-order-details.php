@@ -38,9 +38,13 @@
                      <input type="text" name="discount" class="form-control" placeholder="xx.xx" required="required">
                    </div>
                    <div class="form-group">
-                      <input type="submit" name="order-details" class="btn btn-primary btn-block" value="CONFIRM">
+                      <input type="submit" name="confirm" class="btn btn-primary btn-block" value="CONFIRM">
+                   </div>
+                   <div class="form-group">
+                      <input type="submit" name="order_lagi" class="btn btn-primary btn-block" value="ORDER AGAIN">
                    </div>
                   </form>
+
           </div>
         </div>
       </div>
